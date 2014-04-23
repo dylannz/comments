@@ -1,12 +1,11 @@
-<?php if (!defined('IN_APP')) die(); ?>
+<?php
+if (!isset($comments) || !$comments) {
+	?>
+	<p>There are no comments at this time.</p>
+	<?php
+	return;
+}
 
-<div id="comments-list">
+foreach($comments as $comment) {
 	
-</div>
-
-<div id="new-comment">
-	<form id="new-comment-form" action="">
-		<h2>New comment</h2>
-		
-	</form>
-</div>
+}
