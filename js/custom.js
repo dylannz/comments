@@ -31,10 +31,12 @@ var Comments = function() {
 							$(this).remove();
 						});
 						p.append(r);
+						p.removeClass('active-reply');
+						C.loadReply(p.children('.comment:last'));
 					} else {
 						// Nope, not a reply - add to top level!
 						C.allComments.append(r);
-						C.loadReply(r);
+						C.loadReply(C.allComments.children('.comment:last'));
 						$(form).find('input[type=text],input[type=email],textarea').val('');
 					}
 				} else {
