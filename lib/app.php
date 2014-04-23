@@ -14,7 +14,6 @@ class App {
 		
 		$this->root = dirname(dirname(__FILE__));
 		
-		$this->template = new stdClass();
 		$this->view = 'index';
 		$this->viewVars = array();
 		$this->layout = 'index';
@@ -59,9 +58,9 @@ class App {
 	}
 	
 	private function index() {
-		$this->template->comments = $this->db->get_results(
+		$this->_set('comments', $this->db->get_results(
 			"SELECT * FROM comments ORDER BY id ASC"
-		);
+		));
 	}
 	
 	private function add() {
@@ -71,8 +70,22 @@ class App {
 		if (!$name || !$email || !$comment || !filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($name) > 50 || strlen($email) > 255) {
 			die(); // have no mercy
 		}
+		$parent_id = 0;
+		if ((int)_post('parent_id') > 0) {
+			$exists = $this->db->get_var(
+				$this->db->prepare(
+					"SELECT id FROM comments WHERE id=%d",
+					array(
+						_post('parent_id')
+					)
+				)
+			);
+			if ($exists) {
+				$parent_id = $exists;
+			}
+		}
 		$comment = array(
-			'parent_id' => 0,
+			'parent_id' => $parent_id,
 			'gravatar_url' => get_gravatar($email),
 			'name' => $name,
 			'email' => $email,
