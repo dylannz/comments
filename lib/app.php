@@ -5,6 +5,7 @@ class App {
 		global $config;
 		$this->config = $config;
 		
+		// Initialize database connection
 		$this->db = new BlackliteDB(
 			$this->config['DB_HOST'],
 			$this->config['DB_USER'],
@@ -12,8 +13,8 @@ class App {
 			$this->config['DB_NAME']
 		);
 		
+		// Set initial vars
 		$this->root = dirname(dirname(__FILE__));
-		
 		$this->view = 'index';
 		$this->viewVars = array();
 		$this->layout = 'index';
@@ -26,9 +27,11 @@ class App {
 			die();
 		}
 		
+		// Call the requested action
 		call_user_func(array($this, $this->action));
 	}
 	
+	// Set variables to be used in views
 	public function _set($one, $two = null) {
 		if (is_array($one)) {
 			if (is_array($two)) {
@@ -42,6 +45,7 @@ class App {
 		$this->viewVars = $data + $this->viewVars;
 	}
 	
+	// Render a view
 	public function _view($view = null, $set = array()) {
 		global $app;
 		$this->_set($set);
@@ -49,20 +53,19 @@ class App {
 		include($this->root . '/views/' . ($view ? $view : $this->view) . '.php');
 	}
 	
+	// Returns an absolute URL relative to the application's root URL
 	public function _href($extra = null) {
 		return $this->config['URL'] . $extra;
 	}
 	
-	private function _404() {
-		
-	}
-	
+	// Main page
 	private function index() {
 		$this->_set('comments', $this->db->get_results(
 			"SELECT * FROM comments ORDER BY id ASC"
 		));
 	}
 	
+	// Add or reply to comment
 	private function add() {
 		$name = _post('name');
 		$email = _post('email');
