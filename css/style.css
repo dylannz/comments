@@ -49,3 +49,50 @@ table {
 
 /* Standard CSS starts here */
 
+/* Form CSS */
+
+body { font-family:'Lato', 'sans-serif'; color:#333; }
+
+#container { padding:50px; }
+
+h2 { font-size:24px; line-height:30px; font-weight:bold; margin:20px 0; }
+
+p { margin:20px 0; }
+
+/* Standard form/input styles */
+.input-text,
+.input-textarea { border:1px solid #e0e0e0; border-radius:5px; font-size:14px; line-height:18px; padding:8px; outline:none; width:200px; }
+.input-textarea { width:280px; height:80px; }
+
+.input-text.error,
+.input-textarea.error { border:1px solid #c00; }
+
+.input-text:focus,
+.input-textarea:focus { background:#f6f6f6; }
+
+.input-button { background:#333; color:#fff; border-radius:5px; border:1px solid #222; font-size:14px; padding:6px 8px; cursor:pointer; transition:background 0.2s; -webkit-transition:background 0.2s; box-shadow:0 1px 4px #999; outline:none; }
+.input-button:hover { background:#666; border:1px solid #555; }
+.input-button:active { background:#000; border:1px solid #555; }
+
+div.field { margin:10px 0; }
+
+div.field label { display:block; float:left; line-height:38px; width:80px; }
+div.field label.error { float:none; display:block; color:#f00; width:auto; line-height:24px; margin-bottom:10px; margin-left:80px; }
+
+div.field.textarea label { float:none; }
+div.field.textarea label.error { margin-left:0; }
+
+/* Comments */
+.comment { max-width:560px; border:1px solid #eee; border-radius:5px; box-shadow:0 2px 10px #ddd; margin:20px 0 40px; }
+.comment > .comment-info { height:80px; padding:20px 20px 0; }
+.comment > .comment-info > a.number { display:block; float:right; color:#999; font-size:0.6em; }
+.comment > .comment-info > a.number:hover { color:#ccc; text-decoration:none; }
+.comment > .comment-info img.comment-image { float:left; margin-right:15px; }
+.comment > .comment-info h3.comment-name { font-size:1.5em; margin-top:15px; line-height:1.2em; }
+.comment > .comment-info h4.comment-email {  }
+.comment > .comment-info h4.comment-email a { color:#666; font-style:italic; text-decoration:none; font-size:12px; }
+.comment > .comment-info h4.comment-email a:hover { color:#333; text-decoration:underline; }
+.comment > .comment-text { padding:0 20px; font-size:0.8em; line-height:1.2em; }
+
+/* New comment */
+#new-comment { border-top:5px dashed #ededed; }
