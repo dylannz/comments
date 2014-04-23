@@ -16,3 +16,11 @@ This project does not use an existing PHP framework. I wrote it myself to show k
 
 ## Database
 A MySQL database server is required. The SQL for the database is included in comments.sql.
+
+## What have I used from other libraries?
+I wrote all of the code in this repository, except for:
+
+* jQuery library + validation plugin
+* get_gravatar() in lib/functions.php
+* $app->_set() in lib/app.php (pulled from cakePHP)
+* reset.css stuff in css/style.css
