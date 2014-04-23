@@ -9,4 +9,11 @@
 		<p><?php echo nl2br(htmlentities($comment['comment'])); ?></p>
 		<p><a href="#" class="reply">Reply</a></p>
 	</div>
+	<?php
+	if (isset($comments)) {
+		$app->_set(array('comment_parent_id' => $comment['id']));
+		$app->_view('comments');
+		$app->_set(array('comment_parent_id' => null));
+	}
+	?>
 </div>
