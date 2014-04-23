@@ -15,7 +15,7 @@ class App {
 		
 		$this->root = dirname(dirname(__FILE__));
 		
-		$this->view = 'comments';
+		$this->view = 'index';
 		$this->layout = 'index';
 		$this->action = _get('action', 'index');
 		
@@ -29,8 +29,9 @@ class App {
 		call_user_func(array($this, $this->action));
 	}
 	
-	public function _view() {
-		include($this->root . '/views/' . $this->view . '.php');
+	public function _view($view = null) {
+		global $app;
+		include($this->root . '/views/' . ($view ? $view : $this->view) . '.php');
 	}
 	
 	public function _href($extra = null) {
